@@ -40,24 +40,28 @@ public class Algos {
             }
         }else{
 
-            ArrayList<Integer> temp = new ArrayList<>();
+            for(int i = 0;i < listBLength;i++){
 
-            for(int i = 0; i < indexToAppendFrom;i++){
+                for(int j = 0;j < indexToAppendFrom;j++){
 
-                for(int j = 0; j < listBLength;j++){
+                    if(listB[i] < listA[j]){
 
-                    if(listA[i] < listB[j]){
+                        for(int k = indexToAppendFrom - 1;k >= j;k--){
 
-                        temp.add(listA[i]);
-                        j = listBLength;
-                    }else{
+                            listA[k + 1] = listA[k];
+                        }
 
-                        temp.add(listB[j]);
+                        indexToAppendFrom++;
+                        listA[j] = listB[i];
+                        j = indexToAppendFrom;
+
+                    }else if((listB[i] > listA[j]) && (j == indexToAppendFrom - 1)) {
+
+                        listA[indexToAppendFrom] = listB[i];
+                        indexToAppendFrom++;
                     }
                 }
             }
-
-            System.out.println(temp);
 
         }
 
